@@ -10,7 +10,6 @@ public class playerC : MonoBehaviour
     Rigidbody2D rb;
 
     [Header("Opciones Jugador: ")]
-    public float velocidad;
     public float salto;
 
     [Header("Ataque jugador: ")]
@@ -20,8 +19,6 @@ public class playerC : MonoBehaviour
     public float tiempoEntre;
     private float tiempoSiguiente;
 
-    private bool controlM;
-    private bool moving;
     private bool puedeSaltar;
 
     void Start()
@@ -38,20 +35,6 @@ public class playerC : MonoBehaviour
 
     private void Movimiento()
     {
-        Vector2 newVelocity;
-        
-        newVelocity.x = velocidad;
-        newVelocity.y = rb.velocity.y;
-
-        rb.velocity = newVelocity;
-
-        if (controlM)
-        {
-            if (moving = rb.velocity.x > 0)
-            {
-                animator.SetBool("Run", moving);
-            }
-        }
      
         if (Input.GetKeyDown(KeyCode.W) && puedeSaltar)
         {
@@ -59,8 +42,7 @@ public class playerC : MonoBehaviour
             puedeSaltar = false;
             animator.SetTrigger("Jump");
             animator.SetBool("Down", true);
-            moving = false;
-            controlM = false;
+
         }
 
     }
@@ -84,13 +66,13 @@ public class playerC : MonoBehaviour
         animator.SetTrigger("Attack");
 
         Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorAtaque.position, radio);
-        foreach (Collider2D collisionador in objetos)
+        /*foreach (Collider2D collisionador in objetos)
         {
             if (collisionador.CompareTag("Enemigo"))
             {
                 //collisionador.transform.GetComponent<enemigoC_Fuego>().Daño(dañoGolpe);
             }
-        }
+        }*/
     }
 
     private void OnDrawGizmos()
@@ -104,7 +86,6 @@ public class playerC : MonoBehaviour
         if(collision.collider.tag == "Suelo")
         {
             puedeSaltar = true;
-            controlM = true;
             animator.SetBool("Down", false);
         }
     }
