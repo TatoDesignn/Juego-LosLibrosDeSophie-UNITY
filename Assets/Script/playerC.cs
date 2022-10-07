@@ -66,13 +66,13 @@ public class playerC : MonoBehaviour
         animator.SetTrigger("Attack");
 
         Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorAtaque.position, radio);
-        /*foreach (Collider2D collisionador in objetos)
+        foreach (Collider2D collisionador in objetos)
         {
             if (collisionador.CompareTag("Enemigo"))
             {
-                //collisionador.transform.GetComponent<enemigoC_Fuego>().Daño(dañoGolpe);
+                collisionador.transform.GetComponent<Enemigo>().Daño(dañoAtaque);
             }
-        }*/
+        }
     }
 
     private void OnDrawGizmos()
