@@ -64,7 +64,6 @@ public class spawner : MonoBehaviour
         if (!obstaculos[obstaculosCuenta].activeSelf)
         {
             obstaculos[obstaculosCuenta].SetActive(true);
-            Invoke("Destruir", 2f);
         }
         
         obstaculosCuenta++;

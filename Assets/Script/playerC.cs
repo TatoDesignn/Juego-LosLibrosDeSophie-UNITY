@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class playerC : MonoBehaviour
 { 
@@ -10,6 +12,7 @@ public class playerC : MonoBehaviour
     Rigidbody2D rb;
 
     [Header("Opciones Jugador: ")]
+    public TextMeshProUGUI puntaje;
     public float salto;
 
     [Header("Ataque jugador: ")]
@@ -19,6 +22,7 @@ public class playerC : MonoBehaviour
     public float tiempoEntre;
     private float tiempoSiguiente;
 
+    private int puntos = 0;
     private bool puedeSaltar;
 
     void Start()
@@ -29,6 +33,7 @@ public class playerC : MonoBehaviour
 
     void Update()
     {
+        ControlPuntos();
         Movimiento();
         Ataque();
     }
@@ -75,6 +80,14 @@ public class playerC : MonoBehaviour
         }
     }
 
+    private void ControlPuntos()
+    {
+        if(puntos == 100)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -88,5 +101,20 @@ public class playerC : MonoBehaviour
             puedeSaltar = true;
             animator.SetBool("Down", false);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Libro"))
+        {
+            Destroy(collision.gameObject);
+            puntos += 25;
+            Texto();
+        }
+    }
+
+    private void Texto()
+    {
+        puntaje.text = puntos.ToString();
     }
 }

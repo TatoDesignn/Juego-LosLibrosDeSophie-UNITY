@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Suelo
   - Enemigo
+  - Libro
+  - Jugador
   layers:
   - Default
   - TransparentFX
