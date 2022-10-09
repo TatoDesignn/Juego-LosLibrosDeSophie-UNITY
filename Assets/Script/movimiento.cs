@@ -11,7 +11,7 @@ public class movimiento : MonoBehaviour
     [Header("CONTROL: ")]
     public float velocidad;
 
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.left * velocidad;
@@ -22,6 +22,7 @@ public class movimiento : MonoBehaviour
     {
         Destroy(gameObject, 7);
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Enemigo : MonoBehaviour
 {
-
+    Animator animator;
     public float vidaUno;
 
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
     public void Daño(float daño)
     {
 
@@ -15,7 +19,8 @@ public class Enemigo : MonoBehaviour
 
         if (vidaUno <= 0)
         {
-            Destroy(gameObject);
+            animator.SetTrigger("Muerte");
+            Destroy(gameObject, 0.8f);
         }
     }
 }

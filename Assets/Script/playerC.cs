@@ -14,6 +14,7 @@ public class playerC : MonoBehaviour
     [Header("Opciones Jugador: ")]
     public TextMeshProUGUI puntaje;
     public float salto;
+    public float abajo;
 
     [Header("Ataque jugador: ")]
     public Transform controladorAtaque;
@@ -47,6 +48,11 @@ public class playerC : MonoBehaviour
             puedeSaltar = false;
             animator.SetTrigger("Jump");
             animator.SetBool("Down", true);
+
+        }
+        if (Input.GetKeyDown(KeyCode.S) && !puedeSaltar)
+        {
+            rb.AddForce(Vector2.up * abajo, ForceMode2D.Impulse);
 
         }
 
@@ -108,7 +114,7 @@ public class playerC : MonoBehaviour
         if (collision.CompareTag("Libro"))
         {
             Destroy(collision.gameObject);
-            puntos += 25;
+            puntos += 5;
             Texto();
         }
     }

@@ -8,6 +8,8 @@ public class spawner2 : MonoBehaviour
     public GameObject enemigo;
     public GameObject libro1;
 
+    public float velocidad = 0;
+
     public float tiempo;
 
     public float posicionX;
@@ -17,6 +19,7 @@ public class spawner2 : MonoBehaviour
 
     void Start()
     {
+
         tronco.transform.position = new Vector2(posicionX, posicionY1);
         libro1.transform.position = new Vector2(posicionX, posicionY3);
         enemigo.transform.position = new Vector2(posicionX, posicionY2);
@@ -28,6 +31,11 @@ public class spawner2 : MonoBehaviour
     void Update()
     {
         tiempo += Time.deltaTime;
+
+        if (tiempo > 20)
+        {
+            velocidad += 3;
+        }
     }
 
     private void Generador()
