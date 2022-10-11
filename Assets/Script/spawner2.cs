@@ -4,24 +4,32 @@ using UnityEngine;
 
 public class spawner2 : MonoBehaviour
 {
+    movimiento mv;
+
     public GameObject tronco;
     public GameObject enemigo;
     public GameObject libro1;
 
     public float velocidad = 0;
+    public float velocidad2 = 0;
 
-    public float tiempo;
+    public float contador2;
+    public float contador3;
+    public float contador;
 
     public float posicionX;
     public float posicionY1;
     public float posicionY2;
-    public float posicionY3;
 
     void Start()
     {
+        contador2 = 5;
+        contador3 = 7;
+
+        mv = tronco.GetComponent<movimiento>();
+        mv = enemigo.GetComponent<movimiento>();
 
         tronco.transform.position = new Vector2(posicionX, posicionY1);
-        libro1.transform.position = new Vector2(posicionX, posicionY3);
         enemigo.transform.position = new Vector2(posicionX, posicionY2);
 
         Generador();
@@ -30,16 +38,25 @@ public class spawner2 : MonoBehaviour
 
     void Update()
     {
-        tiempo += Time.deltaTime;
 
-        if (tiempo > 20)
+        if (contador == contador2)
         {
-            velocidad += 3;
+            contador2 += 5;
+            velocidad += 0.5f;
+            
+        }
+
+        if (contador == contador3)
+        {
+            contador3 += 7;
+            velocidad2 += 0.2f;
+
         }
     }
 
     private void Generador()
     {
+        contador += 1;
         int elegir = Random.Range(0, 3);
 
         if(elegir == 1)
@@ -72,6 +89,9 @@ public class spawner2 : MonoBehaviour
 
     private void Libro()
     {
+        float aleatorio = Random.Range(-2.8f, 2.1f);
+        libro1.transform.position = new Vector2(posicionX, aleatorio);
+
         Instantiate(libro1);
         Invoke("Generador", 3f);
     }

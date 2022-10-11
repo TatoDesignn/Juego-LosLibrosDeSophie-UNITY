@@ -30,6 +30,7 @@ public class playerC : MonoBehaviour
     {
        rb = GetComponent<Rigidbody2D>();
        animator = GetComponent<Animator>();
+   
     }
 
     void Update()
@@ -107,6 +108,12 @@ public class playerC : MonoBehaviour
             puedeSaltar = true;
             animator.SetBool("Down", false);
         }
+
+        if(collision.collider.tag == "Enemigo" || collision.collider.tag == "Tronco")
+        {
+            animator.SetTrigger("Death");
+
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -114,7 +121,7 @@ public class playerC : MonoBehaviour
         if (collision.CompareTag("Libro"))
         {
             Destroy(collision.gameObject);
-            puntos += 5;
+            puntos += 2;
             Texto();
         }
     }

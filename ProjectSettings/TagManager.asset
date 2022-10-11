@@ -8,6 +8,8 @@ TagManager:
   - Enemigo
   - Libro
   - Jugador
+  - Spawner
+  - Tronco
   layers:
   - Default
   - TransparentFX
