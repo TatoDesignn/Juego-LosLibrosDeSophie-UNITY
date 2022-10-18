@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class playerC : MonoBehaviour
+public class playerCDos : MonoBehaviour
 { 
     Animator animator;
     Rigidbody2D rb;
@@ -26,7 +26,7 @@ public class playerC : MonoBehaviour
     private float tiempoSiguiente;
 
     private int pausa;
-    public int puntos = 0;
+    public int puntos = 100;
     private bool puedeSaltar;
 
     void Start()
@@ -41,7 +41,6 @@ public class playerC : MonoBehaviour
 
     void Update()
     {
-        ControlPuntos();
         Movimiento();
         Ataque();
     }
@@ -105,16 +104,6 @@ public class playerC : MonoBehaviour
         }
     }
 
-    private void ControlPuntos()
-    {
-        if(puntos == 100)
-        {
-            puntos = 101;
-            trans.Pasar();
-            Invoke("Cambio2", 1);
-        }
-    }
-
     private void Cambio()
     {
         SceneManager.LoadScene("Dead");
@@ -153,7 +142,7 @@ public class playerC : MonoBehaviour
         if (collision.CompareTag("Libro"))
         {
             Destroy(collision.gameObject);
-            puntos += 50;
+            puntos += 5;
             Texto();
         }
     }
