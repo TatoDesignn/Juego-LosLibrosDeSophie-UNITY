@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class spawner2 : MonoBehaviour
 {
-    movimiento mv;
 
     public GameObject tronco;
     public GameObject enemigo;
@@ -25,9 +24,6 @@ public class spawner2 : MonoBehaviour
     {
         contador2 = 5;
         contador3 = 7;
-
-        mv = tronco.GetComponent<movimiento>();
-        mv = enemigo.GetComponent<movimiento>();
 
         tronco.transform.position = new Vector2(posicionX, posicionY1);
         enemigo.transform.position = new Vector2(posicionX, posicionY2);
@@ -56,6 +52,7 @@ public class spawner2 : MonoBehaviour
 
     private void Generador()
     {
+
         contador += 1;
         int elegir = Random.Range(0, 3);
 

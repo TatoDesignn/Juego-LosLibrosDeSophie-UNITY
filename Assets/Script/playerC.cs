@@ -10,12 +10,14 @@ public class playerC : MonoBehaviour
 { 
     Animator animator;
     Rigidbody2D rb;
+    Transition2 trans;
 
     [Header("Opciones Jugador: ")]
     public TextMeshProUGUI puntaje;
     public float salto;
     public float abajo;
-
+    
+    [Space]
     [Header("Ataque jugador: ")]
     public Transform controladorAtaque;
     public float radio;
@@ -23,14 +25,18 @@ public class playerC : MonoBehaviour
     public float tiempoEntre;
     private float tiempoSiguiente;
 
-    private int puntos = 0;
+    private int pausa;
+    public int puntos = 0;
     private bool puedeSaltar;
 
     void Start()
     {
-       rb = GetComponent<Rigidbody2D>();
-       animator = GetComponent<Animator>();
-   
+        trans = GameObject.FindGameObjectWithTag("Transicion").GetComponent<Transition2>();
+
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+
+        pausa = 0;
     }
 
     void Update()
@@ -55,6 +61,18 @@ public class playerC : MonoBehaviour
         {
             rb.AddForce(Vector2.up * abajo, ForceMode2D.Impulse);
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && pausa == 0)
+        {
+            Time.timeScale = 0;
+            pausa += 1;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape) && pausa == 1)
+        {
+            Time.timeScale = 1;
+            pausa = 0;
         }
 
     }
@@ -91,8 +109,14 @@ public class playerC : MonoBehaviour
     {
         if(puntos == 100)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+            puntos = 101;
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
         }
+    }
+
+    private void Cambio()
+    {
+        SceneManager.LoadScene("Dead");
     }
 
     private void OnDrawGizmos()
@@ -112,6 +136,8 @@ public class playerC : MonoBehaviour
         if(collision.collider.tag == "Enemigo" || collision.collider.tag == "Tronco")
         {
             animator.SetTrigger("Death");
+            trans.Pasar();
+            Invoke("Cambio", 1);
 
         }
     }
@@ -121,7 +147,7 @@ public class playerC : MonoBehaviour
         if (collision.CompareTag("Libro"))
         {
             Destroy(collision.gameObject);
-            puntos += 2;
+            puntos += 50;
             Texto();
         }
     }

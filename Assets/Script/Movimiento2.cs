@@ -29,7 +29,7 @@ public class Movimiento2 : MonoBehaviour
     {
         velocidad2 = spawn.velocidad2;
 
-        if (velocidad2 != velocidadInicial && velocidad2 < 8)
+        if (velocidad2 != velocidadInicial && velocidad < 8)
         {
             velocidad += velocidad2;
             velocidadInicial = velocidad2;

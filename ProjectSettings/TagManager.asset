@@ -10,6 +10,10 @@ TagManager:
   - Jugador
   - Spawner
   - Tronco
+  - Boton1
+  - Transicion
+  - Padre
+  - Papa
   layers:
   - Default
   - TransparentFX
