@@ -7,6 +7,7 @@ public class Winner : MonoBehaviour
 {
     Animator sophie;
     Animator papa;
+    AudioSource audio1;
 
     public GameObject dialogo1;
     public GameObject dialogo2;
@@ -20,6 +21,7 @@ public class Winner : MonoBehaviour
     {
         sophie = GameObject.FindGameObjectWithTag("Sophie").GetComponent<Animator>();
         papa = GameObject.FindGameObjectWithTag("Papa").GetComponent<Animator>();
+        audio1 = GetComponent<AudioSource>();
 
         dialogo2.SetActive(false);
         boton2.SetActive(false);
@@ -30,6 +32,7 @@ public class Winner : MonoBehaviour
 
     public void Pasar()
     {
+        audio1.Play();
         dialogo1.SetActive(false);
         dialogo2.SetActive(true);
 
@@ -41,6 +44,7 @@ public class Winner : MonoBehaviour
 
     public void Si()
     {
+        audio1.Play();
         StartCoroutine(Cambio2());
     }
 
@@ -80,6 +84,7 @@ public class Winner : MonoBehaviour
 
     public void No()
     {
+        audio1.Play();
         StartCoroutine(Cambio());
     }
 }

@@ -11,6 +11,7 @@ public class playerCDos : MonoBehaviour
     Animator animator;
     Rigidbody2D rb;
     Transition2 trans;
+    AudioSource audio1;
 
     [Header("Opciones Jugador: ")]
     public TextMeshProUGUI puntaje;
@@ -25,6 +26,13 @@ public class playerCDos : MonoBehaviour
     public float tiempoEntre;
     private float tiempoSiguiente;
 
+    [Space]
+    [Header("Sonidos: ")]
+    [SerializeField] private AudioClip Duende;
+    [SerializeField] private AudioClip tronco;
+    [SerializeField] private AudioClip GolpeS;
+    [SerializeField] private AudioClip punticos;
+
     private int pausa;
     public int puntos = 100;
     private bool puedeSaltar;
@@ -32,6 +40,7 @@ public class playerCDos : MonoBehaviour
     void Start()
     {
         trans = GameObject.FindGameObjectWithTag("Transicion").GetComponent<Transition2>();
+        audio1 = GetComponent<AudioSource>();
 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -99,6 +108,7 @@ public class playerCDos : MonoBehaviour
         {
             if (collisionador.CompareTag("Enemigo"))
             {
+                audio1.PlayOneShot(GolpeS);
                 collisionador.transform.GetComponent<Enemigo>().Daño(dañoAtaque);
             }
         }
@@ -128,12 +138,21 @@ public class playerCDos : MonoBehaviour
             animator.SetBool("Down", false);
         }
 
-        if(collision.collider.tag == "Enemigo" || collision.collider.tag == "Tronco")
+        if(collision.collider.tag == "Enemigo")
         {
+            audio1.PlayOneShot(Duende);
             animator.SetTrigger("Death");
             trans.Pasar();
             Invoke("Cambio", 1);
 
+        }
+
+        if (collision.collider.tag == "Tronco")
+        {
+            audio1.PlayOneShot(tronco);
+            animator.SetTrigger("Death");
+            trans.Pasar();
+            Invoke("Cambio", 1);
         }
     }
 
@@ -141,6 +160,7 @@ public class playerCDos : MonoBehaviour
     {
         if (collision.CompareTag("Libro"))
         {
+            audio1.PlayOneShot(punticos);
             Destroy(collision.gameObject);
             puntos += 5;
             Texto();
