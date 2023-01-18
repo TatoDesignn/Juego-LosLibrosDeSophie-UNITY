@@ -173,7 +173,7 @@ public class playerC : MonoBehaviour
         {
             audio1.PlayOneShot(punticos);
             Destroy(collision.gameObject);
-            puntos += 5;
+            puntos += 7;
             Texto();
         }
     }
