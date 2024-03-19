@@ -12,7 +12,7 @@ Ella corre por los caminos del pueblo siguiendo los libros que caen en busca de 
 En este caso, las recompensas que recibe el personaje son los libros, los cuales dan puntos al jugador.
 
 Sophie deberá esquivar a los monstruos en su camino y las trampas que estos mismos le han puesto.</p>
-<img src="https://cdn.discordapp.com/attachments/1001222483120230501/1205941061818515567/image.png?ex=65da3322&is=65c7be22&hm=d4778a26d8b8f5713cb54a5fdb3f52c3cfc146733de960431676e05a0a5e3535&">
+<img src="https://github.com/TatoDesign/Repositorios-Imagenes/blob/main/LosLibrosSophie/loslibrossophie1.png">
 <h2>Controles: 🕹️</h2>
 <ul>
   <li><strong>Saltar:</strong> W</li>
